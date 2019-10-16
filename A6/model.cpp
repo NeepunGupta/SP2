@@ -4,6 +4,7 @@ model::model(QObject *parent) : QObject(parent)
 {
     turnNum = 0;
     percentcomplete = 0;
+    srand(time(NULL));
 }
 
 void model::nextTurn() {
