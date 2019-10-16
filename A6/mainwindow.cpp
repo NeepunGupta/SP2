@@ -91,7 +91,7 @@ void MainWindow::playcompTurn(){
     if (compdur > 500){
         compdur *= .99;
     }
-
+    ui->textEdit->setText(QString::fromStdString("Turn number: " + std::to_string(mod.turnNum)));
     ui->BlueButton->setEnabled(true);
     ui->RedButton->setEnabled(true);
 }

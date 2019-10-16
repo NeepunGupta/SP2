@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <model.h>
 #include <list>
+#include <string>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -16,6 +16,7 @@
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,6 +29,7 @@ public:
     QPushButton *BlueButton;
     QProgressBar *progressBar;
     QPushButton *startButton;
+    QTextEdit *textEdit;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -51,6 +53,9 @@ public:
         startButton = new QPushButton(centralwidget);
         startButton->setObjectName(QString::fromUtf8("startButton"));
         startButton->setGeometry(QRect(350, 20, 89, 25));
+        textEdit = new QTextEdit(centralwidget);
+        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setGeometry(QRect(340, 340, 104, 70));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
