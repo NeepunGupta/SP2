@@ -8,6 +8,8 @@ model::model(QObject *parent) : QObject(parent)
 
 void model::nextTurn() {
     turnNum++;
+    playerMove.clear();
+    percentcomplete = 0;
     bool b = rand() % 2;
     compMove.push_back(b);
 }
