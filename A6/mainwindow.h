@@ -30,6 +30,7 @@ private:
     void wrongAnswer();
     void startGame();
     void playcompTurn();
+    void winGame();
 
 };
 #endif // MAINWINDOW_H

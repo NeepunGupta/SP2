@@ -73,52 +73,57 @@ void MainWindow::startGame(){
 }
 
 void MainWindow::playcompTurn(){
-    ui->BlueButton->setEnabled(false);
-    ui->RedButton->setEnabled(false);
-
-    this->repaint();
-
-    q.start(1000);
-    while(q.remainingTime()!= 0){
+    if(mod.turnNum > 10){
+        winGame();
     }
-    q.stop();
+    else{
+        ui->BlueButton->setEnabled(false);
+        ui->RedButton->setEnabled(false);
 
-    for(unsigned long i = 0; i < mod.compMove.size(); i++){
-        if(mod.compMove[i]){
-            ui->RedButton->setStyleSheet("background-color: rgb(255,150,150)");
-            this->repaint();
-            q.start(compdur);
-            while(q.remainingTime()!= 0){
-            }
-            q.stop();
-            ui->RedButton->setStyleSheet(QString("QPushButton {background-color: rgb(200,50,50);} QPushButton:pressed {background-color: rgb(255,150,150);}"));
-            this->repaint();
+        this->repaint();
+
+        q.start(1000);
+        while(q.remainingTime()!= 0){
         }
-        else{
-            ui->BlueButton->setStyleSheet("background-color: rgb(150,150,255)");
-            this->repaint();
-            q.start(compdur);
+        q.stop();
+
+        for(unsigned long i = 0; i < mod.compMove.size(); i++){
+            if(mod.compMove[i]){
+                ui->RedButton->setStyleSheet("background-color: rgb(255,150,150)");
+                this->repaint();
+                q.start(compdur);
+                while(q.remainingTime()!= 0){
+                }
+                q.stop();
+                ui->RedButton->setStyleSheet(QString("QPushButton {background-color: rgb(200,50,50);} QPushButton:pressed {background-color: rgb(255,150,150);}"));
+                this->repaint();
+            }
+            else{
+             ui->BlueButton->setStyleSheet("background-color: rgb(150,150,255)");
+                this->repaint();
+                q.start(compdur);
+                while(q.remainingTime()!= 0){
+                }
+                q.stop();
+                ui->BlueButton->setStyleSheet(QString("QPushButton {background-color: rgb(50,50,200);} QPushButton:pressed {background-color: rgb(150,150,255);}"));
+                this->repaint();
+            }
+            q.start(1000);
             while(q.remainingTime()!= 0){
             }
-            q.stop();
-            ui->BlueButton->setStyleSheet(QString("QPushButton {background-color: rgb(50,50,200);} QPushButton:pressed {background-color: rgb(150,150,255);}"));
-            this->repaint();
+        }
+        if (compdur > 500){
+            compdur *= .90;
         }
         q.start(1000);
         while(q.remainingTime()!= 0){
         }
+        q.stop();
+        ui->textEdit->setText(QString::fromStdString("Turn number: " + std::to_string(mod.turnNum)));
+        ui->BlueButton->setEnabled(true);
+        ui->RedButton->setEnabled(true);
+            this->repaint();
     }
-    if (compdur > 500){
-        compdur *= .90;
-    }
-    q.start(1000);
-    while(q.remainingTime()!= 0){
-    }
-    q.stop();
-    ui->textEdit->setText(QString::fromStdString("Turn number: " + std::to_string(mod.turnNum)));
-    ui->BlueButton->setEnabled(true);
-    ui->RedButton->setEnabled(true);
-    this->repaint();
 }
 
 void MainWindow::wrongAnswer(){
@@ -132,5 +137,18 @@ void MainWindow::wrongAnswer(){
     this->repaint();
 
     QMessageBox::information(this, tr("Simon"), tr("You Lose!"));
+}
+
+void MainWindow::winGame(){
+    mod.newGame();
+    ui->startButton->setEnabled(true);
+    ui->BlueButton->setEnabled(false);
+    ui->RedButton->setEnabled(false);
+    ui->textEdit->setText(QString::fromStdString("Turn number: " + std::to_string(0)));
+    ui->progressBar->reset();
+
+    this->repaint();
+
+    QMessageBox::information(this, tr("Simon"), tr("You Win!"));
 }
 
