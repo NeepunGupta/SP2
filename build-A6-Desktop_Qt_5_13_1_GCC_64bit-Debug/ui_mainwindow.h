@@ -72,7 +72,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Simon", nullptr));
         RedButton->setText(QCoreApplication::translate("MainWindow", "Red", nullptr));
         BlueButton->setText(QCoreApplication::translate("MainWindow", "Blue", nullptr));
         startButton->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));

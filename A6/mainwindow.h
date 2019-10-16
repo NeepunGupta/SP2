@@ -24,6 +24,7 @@ private:
     Ui::MainWindow *ui;
     model mod;
     QTimer q;
+    int winNum;
     int compdur;
     void RedButtonClicked();
     void BlueButtonClicked();

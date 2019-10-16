@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     compdur = 4000;
+    winNum = 15;
     ui->setupUi(this);
     ui->progressBar->reset();
     ui->BlueButton->setEnabled(false);
@@ -73,7 +74,7 @@ void MainWindow::startGame(){
 }
 
 void MainWindow::playcompTurn(){
-    if(mod.turnNum > 10){
+    if(mod.turnNum > winNum){
         winGame();
     }
     else{
